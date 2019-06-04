@@ -32,8 +32,8 @@ func runExample(set []string, subsetIndices []uint64, title string) {
 	encoded := encode(subsetIndices)
 	decoded := decode(encoded)
 
-	fmt.Printf("Subset %v is represented with number: %v\n", debug(set, subsetIndices), encoded)
-	fmt.Printf("Number: %v represents: %v -> %v\n\n", encoded, decoded, debug(set, decoded))
+	fmt.Printf("Subset %v is represented with number: %v\n", values(set, subsetIndices), encoded)
+	fmt.Printf("Number: %v represents: %v -> %v\n\n", encoded, decoded, values(set, decoded))
 }
 
 func decode(n uint64) []uint64 {
@@ -98,11 +98,11 @@ func sieveOfEratosthenes(N int) (p []uint64) {
 	return p
 }
 
-func debug(set []string, indices []uint64) string {
+func values(set []string, indices []uint64) []string {
 	subset := []string{}
 	for _, v := range indices {
 		subset = append(subset, set[v])
 	}
 
-	return fmt.Sprintf("%v", subset)
+	return subset
 }

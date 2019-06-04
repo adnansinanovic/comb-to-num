@@ -54,7 +54,6 @@ func decode(encodedValue, subsetLength, totalElements int) []int {
 	var result []int = []int{}
 	binom := combin.Binomial(totalElements, subsetLength)
 	for index := totalElements; index >= 1; index-- {
-
 		if binom <= encodedValue {
 			result = append(result, index+1)
 			encodedValue -= binom
