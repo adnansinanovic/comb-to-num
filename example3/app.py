@@ -15,10 +15,10 @@ def runExample(set, subset):
     print("subset {0}, indices: {1}".format(subset, indices))
 
     # sort
-    indices.sort(reverse=True)
+    indices.sort()
     print("sorted indices: {0}".format(indices))
 
-    encoded = encode(indices)
+    encoded = encode(indices, len(set))
     print("encoded: {0}".format(encoded))
 
     decodedIndices = decode(encoded, len(indices), 20)
@@ -26,14 +26,16 @@ def runExample(set, subset):
     print("decoded indices: {0}, decoded: {1}".format(decodedIndices, val))
 
 
-def encode(set):
+def encode(set, totalElements):
     code = 0
     for i in range(len(set)):
-        n = set[i] - 1
+        n = totalElements - set[i]
+        # decreasing k by one (..., 3, 2, 1) for the lower part of binomial
+        # coefficient
         m = len(set) - i
-        if n >= m:
-            code += binomial(n, m)
-
+        # calculate the binomial coefficient and add.
+        code += binomial(n, m)
+        
     return code
 
 
